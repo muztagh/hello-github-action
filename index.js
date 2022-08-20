@@ -1,5 +1,6 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
+const steup = require('./lib/setup-terragrunt')
 
 try {
   // `who-to-greet` input defined in action metadata file
@@ -13,3 +14,11 @@ try {
 } catch (error) {
   core.setFailed(error.message);
 }
+
+(async () => {
+    try {
+        await setup();
+    } catch (error) {
+        core.setFailed(error.message);
+    }
+})();
